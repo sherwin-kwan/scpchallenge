@@ -13,7 +13,7 @@ let PickSchema = new Schema( {
 })
 
 // Virtual property for URL
-PickSchema.virtual('url').get( () => {
+PickSchema.virtual('url').get( function() {
   return `/data/pick/${this._id}`;
 });
 

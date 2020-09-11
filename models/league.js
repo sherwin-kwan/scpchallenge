@@ -9,7 +9,7 @@ let LeagueSchema = new Schema( {
 });
 
 // Virtual property for URL
-LeagueSchema.virtual('url').get( () => {
+LeagueSchema.virtual('url').get( function() {
   return `/data/league/${this._id}`;
 });
 

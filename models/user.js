@@ -8,7 +8,7 @@ let UserSchema = new Schema( {
 })
 
 // Virtual property for URL
-UserSchema.virtual('url').get( () => {
+UserSchema.virtual('url').get( function() {
   return `/data/user/${this._id}`;
 });
 

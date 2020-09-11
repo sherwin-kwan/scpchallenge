@@ -17,7 +17,7 @@ let EventSchema = new Schema( {
 })
 
 // Virtual property for URL
-EventSchema.virtual('url').get( () => {
+EventSchema.virtual('url').get( function() {
   return `/data/event/${this._id}`;
 });
 

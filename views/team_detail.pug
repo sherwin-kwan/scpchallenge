@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1 #{team_detail.city} #{team_detail.teamName} Facts
+
+  ul
+    li League: #{team_detail.league.league}
+    li Conference: #{team_detail.conference}
+    li Division: #{team_detail.division}
+
+  h1 #{team_detail.city} #{team_detail.teamName} Roster
+
+  table
+    thead
+      tr
+        th Number
+        th First Name
+        th Last Name
+        th Position
+    tbody
+      - player_list.sort(function(a, b) {let textA = a.lastName.toUpperCase(); let textB = b.lastName.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+      each player in player_list
+        tr
+          td #{player.jersey_number}
+          td #{player.firstName}
+          td #{player.lastName}
+          td #{player.position}
+
+
+

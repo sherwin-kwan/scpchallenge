@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+
+  table
+    thead
+      tr
+        th Number
+        th First Name
+        th Last Name
+        th Team
+        th Position
+    tbody
+    - all_players.sort(function(a, b) {let textA = a.lastName.toUpperCase(); let textB = b.lastName.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+    each player in all_players
+      tr 
+        td #{player.jersey_number}
+        td 
+          a(href=player.url) #{player.firstName}
+        td 
+          a(href=player.url) #{player.lastName}
+        td #{player.team}
+        td #{player.position}
+    else
+      li No players found!

@@ -11,7 +11,7 @@ let TeamSchema = new Schema( {
 })
 
 // Virtual property for URL
-TeamSchema.virtual('url').get( () => {
+TeamSchema.virtual('url').get( function() {
   return `/data/team/${this._id}`;
 });
 
