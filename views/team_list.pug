@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+
+  table
+    tr
+      th Team Name
+      th League
+      th Conference
+      th Division
+    - all_teams.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+    each team in all_teams
+      tr 
+        td 
+          a(href=team.url) #{team.city} #{team.teamName}
+        td (#{team.league.league_short})
+        td (#{team.conference})
+        td (#{team.division})
+    else
+      li No teams found!

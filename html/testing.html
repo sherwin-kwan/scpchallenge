@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<style type='text/css'>
+
+*, *::before, *::after {
+  text-align: center;
+}
+.left {
+  width: 60%;
+  display: inline-block;
+}
+.right {
+  width: 25%;
+  display: inline-block;
+}
+footer {
+  clear: both;
+}
+
+.group:before, .group:after {
+  content: '';
+  display: table
+}
+
+.group {
+  clear: both;
+  position: relative;
+}
+
+p {
+  box-sizing: border-box;
+  border: 4px solid green;
+  border-radius: 10px;
+  background-color: #cccccc;
+}
+body {
+  background: url('neowise-1.png');
+  background-color: #daa;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: 100px 100px;
+}
+div {
+  padding-top: 400px;
+  padding-bottom: 400px;
+  background: linear-gradient(to right, #0000ff, #00ff00, yellow); /* Blue at the top, green at the bottom, bearing 180*/
+}
+</style>
+
+</head>
+<body>
+  <header>
+    This is the header text!!!
+  </header>
+  <div class="group">
+    <section class="left">
+      <p>THIS IS THE LEFT TEXT</p>
+    </section><!--
+
+    --><section class="right">
+      <p>THIS IS THE RIGHT TEXT</p>
+    </section>
+    <footer>
+      <p>Back to normal, surely?</p>
+    </footer>
+  </div>
+</body>
+</html>

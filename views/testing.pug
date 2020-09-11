@@ -1,0 +1,15 @@
+extends layout
+
+block append head
+  link(rel='stylesheet', href='/stylesheets/test-styles.css')
+
+block content
+  header This is the header text!
+  div(class='group')
+    section(class='left')
+      p THIS IS THE LEFT TEXT
+    section(class='right')
+      p THIS IS THE RIGHT TEXT
+  footer
+    p BACK TO NORMAL SURELY??
+
