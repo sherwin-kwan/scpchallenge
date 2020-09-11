@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -11,4 +11,28 @@ a {
     margin-top: 20px;
     padding: 0;
     list-style: none;
+}
+
+table {
+  border-collapse: separate;
+  
+}
+
+th, td {
+  padding: 15px;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+
+th:first-child, td:first-child {
+  border-left: 2px solid black;
+}
+
+thead {
+  background: blue;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background: #aaaaaa;
 }
