@@ -6,7 +6,7 @@ let TeamSchema = new Schema( {
   teamName: {type: String, maxLength: 64},
   league: {type: Schema.Types.ObjectId, ref: 'League', required: true},
   conference: {type: String},
-  divison: {type: String},
+  division: {type: String},
   league_id: {type: Number, unique: true},
 })
 

@@ -13,14 +13,14 @@ block content
         th Position
     tbody
     - all_players.sort(function(a, b) {let textA = a.lastName.toUpperCase(); let textB = b.lastName.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
-    each player in all_players
+    each element in all_players
       tr 
-        td #{player.jersey_number}
+        td #{element.jersey_number}
         td 
-          a(href=player.url) #{player.firstName}
+          a(href=element.url) #{element.firstName}
         td 
-          a(href=player.url) #{player.lastName}
-        td #{player.team}
-        td #{player.position}
+          a(href=element.url) #{element.lastName}
+        td #{element.team.city} #{element.team.teamName}
+        td #{element.position}
     else
       li No players found!

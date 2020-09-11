@@ -18,10 +18,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', function() {
   // we're connected!
   console.log('Database connected!');
-  Player.find(function (err, players) {
-    if (err) return console.error(err);
-    console.log(players);
-  });
 });
 
 // view engine setup

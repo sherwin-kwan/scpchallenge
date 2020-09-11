@@ -15,4 +15,4 @@ PlayerSchema.virtual('url').get( function () {
   return `/data/player/${this._id}`;
 });
 
-module.exports = mongoose.model('Player', {PlayerSchema});
+module.exports = mongoose.model('Player', PlayerSchema);

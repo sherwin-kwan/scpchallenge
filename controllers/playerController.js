@@ -1,23 +1,25 @@
 const Player = require('../models/player');
+const Team = require('../models/team');
 const async = require('async');
 
 
 // Display list of all Players.
 exports.player_list = function (req, res, next) {
-  Player.find({}, 'firstName lastName jersey_number team position')
+  Player.find({}, 'firstName lastName team jersey_number position')
   .populate('team')
-  .exec( (err, results) => {
+  .exec((err, results) => {
     if (err) {
       return next(err)
     } else {
-      res.render('player_list.pug', { title: 'All Players', all_players: results});
+      console.log(results);
+      res.render('player_list.pug', { title: 'All Players', all_players: results });
     }
   })
 };
 
 // Display detail page for a specific Player.
 exports.player_detail = function (req, res) {
-  res.send('NOT IMPLEMENTED: Player detail: ' + req.params.id);
+  res.send('Player pages are under construction' + req.params.id);
 };
 
 // Display Player create form on GET.

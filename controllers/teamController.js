@@ -5,14 +5,15 @@ const Player = require('../models/player');
 // Display list of all Teams.
 exports.team_list = function (req, res, next) {
   Team.find({}, 'city teamName league conference division')
-    .populate('league')
-    .exec((err, results) => {
-      if (err) {
-        return next(err);
-      } else {
-        res.render('team_list.pug', { title: 'All Teams', all_teams: results });
-      }
-    })
+  .populate('league')
+  .exec((err, results) => {
+    if (err) {
+      return next(err);
+    } else {
+      console.log(results);
+      res.render('team_list.pug', { title: 'All Teams', all_teams: results });
+    }
+  })
 };
 
 // Display detail page for a specific Team, including Players on that Team
