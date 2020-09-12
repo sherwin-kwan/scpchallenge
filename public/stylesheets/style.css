@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00aaaa;
 }
 
 .sidebar-nav {
@@ -34,7 +34,7 @@ thead {
 }
 
 tbody tr:nth-child(even) {
-  background: #aaaaaa;
+  background: #cccccc;
 }
 
 label {

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  form(method='POST' action='')
+    label(for='city') City
+      input#city.form-create(type='text' name='city' value=(undefined===team ? '' : team.city))
+    label(for='teamName') Team Name
+      input#teamName.form-create(type='text' name='teamName' value=(undefined===team ? '' : team.teamName))
+    label(for='league') League 
+      select#sport.form-create(name='league')
+        for league of leagues_object
+          option(value= league._id) #{league.league_short} 
+          //- Note: Value is set to league._id so that when the form submits (POSTS), an actual pointer to a particular league in the league collection 
+          //- is saved (as opposed to just the name of the league. This is important to ensure that relations between two collections stay intact)
+    label(for='conference') Conference
+      input#conference.form-create(type='text' name='conference' value=(undefined===team ? '' : team.conference))
+    label(for='division') Division
+      input#division.form-create(type='text' name='division' value=(undefined===team ? '' : team.division))
+    button.btn.btn-primary(type='submit') Submit
+  if errors
+    ul
+      for error in errors
+        li(class='error')= error.msg

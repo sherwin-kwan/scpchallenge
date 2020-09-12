@@ -7,7 +7,7 @@ let TeamSchema = new Schema( {
   league: {type: Schema.Types.ObjectId, ref: 'League', required: true},
   conference: {type: String},
   division: {type: String},
-  league_id: {type: Number, unique: true},
+  league_id: {type: Number},
 })
 
 // Virtual property for URL

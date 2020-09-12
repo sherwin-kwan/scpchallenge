@@ -10,12 +10,13 @@ block content
         th Abbreviation
         th Sport
     tbody
-    - all_leagues.sort(function(a, b) {let textA = a.city.toUpperCase(); let textB = b.city.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
-    each league in all_leagues
-      tr 
-        td 
-          a(href=league.url) #{league.league}
-        td #{league.league_short}
-        td #{league.sport}
+    - all_leagues.sort(function(a, b) {let textA = a.league_short.toUpperCase(); let textB = b.league_short.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+    if all_leagues.length > 0
+      for league of all_leagues
+        tr 
+          td 
+            a(href=league.url) #{league.league}
+          td #{league.league_short}
+          td #{league.sport}
     else
       li No leagues found!

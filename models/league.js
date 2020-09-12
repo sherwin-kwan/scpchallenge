@@ -5,7 +5,7 @@ let LeagueSchema = new Schema( {
   league: {type: String, required: true, unique: true},
   league_short: {type: String, maxLength: 10},
   sport: {type: String, required: true},
-  testID: {type: Number, unique: true}
+  testID: {type: Number}
 });
 
 // Virtual property for URL

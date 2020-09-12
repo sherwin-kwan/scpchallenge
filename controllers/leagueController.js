@@ -2,7 +2,6 @@ const League = require('../models/league.js');
 const Team = require('../models/team.js');
 const async = require('async');
 const expVal = require('express-validator');
-const { ValidatorsImpl } = require('express-validator/src/chain');
 
 //const { body,validationResult } = require('express-validator/check');
 // const { sanitizeBody } = require('express-validator/filter');
@@ -32,8 +31,14 @@ exports.league_detail = function (req, res, next) {
     },
   }, // Main callback function
     function (err, results) {
+      console.log(results);
+      console.log(!results);
+      console.log(results==null);
       if (err) {
         return next(err);
+      } else if (results.team_list.length == 0) { // Watch out, if you write '!results' it fails, because an invalid ID still returns a results object, just
+      // with no actual results!
+        res.send('You have entered an invalid league ID');
       } else {
         res.render('league_detail.pug', { title: results.league_detail.league, league_detail: results.league_detail, team_list: results.team_list });
       }
@@ -73,14 +78,14 @@ exports.league_create_post = [
      }
     );
     // If errors are detected, render form again with an error message
-    if (!errors.isEmpty()) {
+    if (!(errors.isEmpty)) {
       res.render('league_submit', {title: 'Add New League', league: league, errors: errors.array()});
       // Note: errors.array() is needed to access the errors themselves
       // because express-validator returns an object containing the array of errors along with other information
       return;
     };
     // Check for duplicates
-    League.findOne( {'league': req.body.league_name}, (err, results, next) => {
+    League.findOne( {'league': req.body.league_name}, (err, results) => {
       if (err) { // Search threw an error
         return next(err);
       } else if (results) { // Search found a duplicate
@@ -100,12 +105,30 @@ exports.league_create_post = [
 
 // Display League delete form on GET.
 exports.league_delete_get = function (req, res) {
-  res.send('NOT IMPLEMENTED: League delete GET');
+  // First of all, make sure there are no teams in the league being deleted (otherwise the procedure should not execute)
+  /*
+  async.parallel({
+    league_to_delete: (callback) => {
+      League.findById(req.params.id)
+      .exec(callback);
+    },
+    teams_in_league: (callback) => {
+      Team.find({ 'league': req.params.id})
+      .exec(callback);
+    }
+  }, (err, results) => {
+    if (err) {
+      return next(err);
+    } else {
+      res.render('league_delete.pug', league: league_to_delete, teams: teams_in_league);
+    }
+  });*/
+  res.send('Please delete leagues directly from the database. If you don\'t know where the database is, you don\'t have permission to delete a league.');
 };
 
 // Handle League delete on POST.
 exports.league_delete_post = function (req, res) {
-  res.send('NOT IMPLEMENTED: League delete POST');
+  res.send('Please delete leagues directly from the database. If you don\'t know where the database is, you don\'t have permission to delete a league.');
 };
 
 // Display League update form on GET.
