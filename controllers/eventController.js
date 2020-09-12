@@ -5,13 +5,13 @@ const async = require('async');
 exports.event_list = function (req, res) {
   Event.find({}, 'team1 team2 team1_result team2_result')
     .populate('team1 team 2')
-    .exec( (err, results => {
+    .exec( (err, results) => {
       if (err) {
         return next(err);
       } else {
         res.render('event_list.pug', {title: 'Event List', event_list: results});
       };
-    }))
+    })
 };
 
 // Display detail page for a specific Event.

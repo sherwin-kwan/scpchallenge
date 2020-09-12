@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 #{league_detail.league} (#{league_detail.league_short}) 
+  
+  ul
+    li Number of Teams: #{team_list.length} 
+    li Sport: #{league_detail.sport}
+
+  h1 List of Teams
+
+  table
+    thead
+      tr
+        th Team
+        th Championships
+    tbody
+      - team_list.sort(function(a, b) {let textA = a.lastName.toUpperCase(); let textB = b.lastName.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+      each team in team_list
+        tr
+          td
+            a(href=team.url) #{team.city} #{team.teamName}
+          td Some number between 0 and 999
+
+
+

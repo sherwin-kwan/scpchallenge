@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  form(method='POST' action='')
+    label(for='league') Full Name of League
+    label(for='league_short') Abbreviation
+    label(for='sport') Sport played
+    button.btn.btn-primary(type='submit') Submit
+  if errors
+    ul
+      li!= error.msg

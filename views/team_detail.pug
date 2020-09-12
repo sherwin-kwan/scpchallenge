@@ -22,8 +22,10 @@ block content
       each player in player_list
         tr
           td #{player.jersey_number}
-          td #{player.firstName}
-          td #{player.lastName}
+          td
+            a(href=player.url) #{player.firstName}
+          td
+            a(href=player.url) #{player.lastName}
           td #{player.position}
 
 
