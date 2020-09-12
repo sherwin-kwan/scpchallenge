@@ -36,3 +36,16 @@ thead {
 tbody tr:nth-child(even) {
   background: #aaaaaa;
 }
+
+label {
+  display: block;
+}
+
+.form-create {
+  margin: 5px 20px;
+}
+
+.error {
+  color: red;
+  margin: 10px;
+}

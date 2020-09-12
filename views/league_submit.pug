@@ -1,11 +1,19 @@
 extends layout
 
 block content
+  h1= title
   form(method='POST' action='')
     label(for='league') Full Name of League
+      input#league_name.form-create(type='text' name='league_name' value=(undefined===league ? '' : league.league))
+    
     label(for='league_short') Abbreviation
+      input#league_short.form-create(type='text' name='league_short' value=(undefined===league ? '' : league.league_short))
+    
     label(for='sport') Sport played
+      input#sport.form-create(type='text' name='sport' value=(undefined===league ? '' : league.sport))
+    
     button.btn.btn-primary(type='submit') Submit
   if errors
     ul
-      li!= error.msg
+      for error in errors
+        li(class='error')= error.msg
