@@ -3,11 +3,11 @@ Check hockey scores and find out who's winning the playoff challenge
 
 # stack/modules/libraries used
 
-Node
-Express
-Pug
-MongoDB + Mongoose
-Bootstrap
+- Node
+- Express
+- Pug
+- MongoDB + Mongoose
+- Bootstrap
 
 # originality
 
