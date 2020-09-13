@@ -65,13 +65,14 @@ exports.league_create_post = [
   // sport: {type: String, required: true}, 
   expVal.body('league_name', 'League name required').trim().isLength({min: 1}),
   expVal.sanitizeBody('league_name').escape(),
-  expVal.body('league_short').trim().isLength({max: 10}),
+  expVal.body('league_short', 'Abbreviation cannot be longer than 10 characters').trim().isLength({max: 10}),
   expVal.sanitizeBody('league_short').escape(),
   expVal.body('sport', 'Sport required').trim().isLength({min: 1}),
   expVal.sanitizeBody('sport').escape(),
   (req, res, next) => {
     // Extract the validation errors from a request.
     const errors = expVal.validationResult(req);
+    console.log(errors);
     // Create a new document for the database with the trimmed, sanitized data
     let league = new League(
       { league: req.body.league_name,
@@ -80,7 +81,8 @@ exports.league_create_post = [
      }
     );
     // If errors are detected, render form again with an error message
-    if (!(errors.isEmpty)) {
+    if (!errors.isEmpty()) {
+      console.log('We have errors!');
       res.render('league_submit', {title: 'Add New League', league: league, errors: errors.array()});
       // Note: errors.array() is needed to access the errors themselves
       // because express-validator returns an object containing the array of errors along with other information
@@ -88,6 +90,7 @@ exports.league_create_post = [
     };
     // Check for duplicates
     League.findOne( {'league': req.body.league_name}, (err, results) => {
+      console.log('No errors!');
       if (err) { // Search threw an error
         return next(err);
       } else if (results) { // Search found a duplicate

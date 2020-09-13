@@ -30,6 +30,8 @@ block content
 
   section(class='foot')
     a(class='btn btn-primary' href= update_url) Edit Team
+    if player_list.length == 0
+      a(class='btn btn-primary' href= delete_url) Delete Team
 
 
 

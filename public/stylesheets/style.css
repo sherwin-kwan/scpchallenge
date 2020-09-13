@@ -50,6 +50,6 @@ label {
   margin: 10px;
 }
 
-section.foot {
-  padding: 20px;
+section.foot a {
+  margin: 20px;
 }

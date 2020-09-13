@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h4 #{title} #{team.teamName}
+  section
+    if roster.length
+      p Cannot delete team: There are still players on your team.
+      p In a future version of this app, you will be able to delete teams and make all their players free agents. However, at the current time, you must first delete all the players on the roster before deleting this team.
+    else
+      p Warning: Once you delete this team, it is gone forever. Really delete #{team.teamName}?
+      form(action="", method="post")
+        label#confirm(class='confirm' value='confirm')
+          input(type='checkbox') 
+          strong Yes, I understand that this action cannot be undone. Please proceed to deleting the team.
+        button(type="submit" class='btn btn-primary') Delete #{team.teamName} Forever
+        
