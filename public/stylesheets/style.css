@@ -49,3 +49,7 @@ label {
   color: red;
   margin: 10px;
 }
+
+section.foot {
+  padding: 20px;
+}

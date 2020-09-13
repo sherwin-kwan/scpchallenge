@@ -38,11 +38,10 @@ exports.team_detail = function (req, res, next) {
         const err = new Error('This team ID is invalid');
         err.status = 404;
         return next(err);
-      } else if (!results.team_detail.city) { // Watch out, if you write '!results' it fails, because an object with zero results is still truthy!
-        res.send('You have entered an invalid team ID');
       } else {
+        const updateUrl = results.team_detail._id + '/update';
         res.render('team_detail.pug', { title: `${results.team_detail.teamName} Roster`, team_detail: results.team_detail, 
-        player_list: results.player_list });
+        player_list: results.player_list, update_url: updateUrl});
       };
     }
   );
@@ -100,7 +99,6 @@ exports.team_create_post = [
       // because express-validator returns an object containing the array of errors along with other information
       return;
     };
-    console.log('past re-render');
     Team.findOne( {city: req.body.city, teamName: req.body.teamName, league: req.body.league}, (err, results) => {
       if (err) {
         return next(err);
@@ -130,11 +128,66 @@ exports.team_delete_post = function (req, res) {
 };
 
 // Display Team update form on GET.
-exports.team_update_get = function (req, res) {
-  res.send('NOT IMPLEMENTED: Team update GET');
+exports.team_update_get = function (req, res, next) {
+  async.parallel({
+    team_details: (callback) => {
+      Team.findById(req.params.id).populate('league').exec(callback);
+    },
+    leagues_object: (callback) => {
+      League.find(callback);
+    }
+  }, (err, results) => {
+    if (err) {
+      return next(err);
+    } else if (results.team_details == null) {
+      const err = new Error('Team not found.');
+      err.status = 404;
+      return next(err);
+    } else { // Team actually exists
+      res.render('team_submit.pug', {title: 'Update Team', team: results.team_details, leagues_object: results.leagues_object });
+    }
+  })
 };
 
 // Handle Team update on POST.
-exports.team_update_post = function (req, res) {
-  res.send('NOT IMPLEMENTED: Team update POST');
-};
+exports.team_update_post = [
+  expVal.body('city', 'City required').trim().isLength({min: 1, max: 64}),
+  expVal.sanitizeBody('city').escape(),
+  expVal.body('teamName').trim().isLength({max: 64}),
+  expVal.sanitizeBody('teamName').escape(),
+  expVal.body('conference').trim(),
+  expVal.sanitizeBody('conference').escape(),
+  expVal.body('division').trim(),
+  expVal.sanitizeBody('division').escape(),
+  function (req, res, next) {
+    // Extract the validation errors from a request.
+    const errors = expVal.validationResult(req);
+    // Create a new document for the database with the trimmed, sanitized data
+    let edited_team = new Team(
+      { city: req.body.city,
+      teamName: req.body.teamName,
+      league: req.body.league,
+      conference: req.body.conference,
+      division: req.body.division,
+      _id: req.params.id // Note: Ensure the original ID is included in this new record (Mongo document) so there's no confusion
+      // And we don't inadvertently create a duplicate
+     }
+    );
+    // If errors are detected, render form again with error message showing
+    if (!errors.isEmpty()) { // This is used because even if there are no errors, a (truthy!) errors object with zero elements is returned
+      console.log('attempting to re-render');
+      res.render('team_submit', {title: 'Add New Team', team: team_to_create, errors: errors.array()});
+      // Note: errors.array() is needed to access the errors themselves
+      // because express-validator returns an object containing the array of errors along with other information
+      return;
+    };
+    // This Mongo command finds and updates the document. $set: X is the syntax for setting the contents of the document to X
+    Team.findByIdAndUpdate(req.params.id, { $set: edited_team}, (err, results) => {
+      if (err) {
+        return next(err);
+      } else { // Back to team details page, now edited
+        res.redirect(edited_team.url);
+      }
+    })
+  }
+];

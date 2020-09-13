@@ -38,7 +38,9 @@ exports.league_detail = function (req, res, next) {
         return next(err);
       } else if (results.team_list.length == 0) { // Watch out, if you write '!results' it fails, because an invalid ID still returns a results object, just
       // with no actual results!
-        res.send('You have entered an invalid league ID');
+        const err = new Error('You have entered an invalid league ID');
+        err.status = 404;
+        return next(err);
       } else {
         res.render('league_detail.pug', { title: results.league_detail.league, league_detail: results.league_detail, team_list: results.team_list });
       }
