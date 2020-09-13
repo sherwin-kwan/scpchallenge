@@ -12,7 +12,7 @@ block content
         th Division
     tbody
     - all_teams.sort(function(a, b) {let textA = a.city.toUpperCase(); let textB = b.city.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
-    each team in all_teams
+    for team in all_teams
       tr 
         td 
           a(href=team.url) #{team.city} #{team.teamName}
@@ -21,3 +21,6 @@ block content
         td #{team.division}
     else
       li No teams found!
+  
+  section(class='foot')
+    a.btn.btn-primary(href='team/create') Create New Team
