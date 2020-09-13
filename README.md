@@ -1,5 +1,5 @@
 # about
-Check hockey scores and find out who's winning the playoff challenge
+Get sports results, and organize contests to predict the outcomes of tournaments like the Stanley Cup Playoffs
 
 # stack/modules/libraries used
 
