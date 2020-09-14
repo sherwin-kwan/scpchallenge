@@ -9,6 +9,9 @@ block content
     label(for='league_short') Abbreviation
       input#league_short.form-create(type='text' name='league_short' value=(undefined===league ? '' : league.league_short))
     
+    label(for='tournament_name') Tournament Name
+      input#tournament_name.form-create(type='text' name='tournament_name' value=(undefined===league ? '' : league.tournament_name))
+  
     label(for='sport') Sport played
       input#sport.form-create(type='text' name='sport' value=(undefined===league ? '' : league.sport))
     

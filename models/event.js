@@ -9,11 +9,13 @@ let EventSchema = new Schema( {
   next_game_begins_at: {type: Date},
   team1_result: {type: Number},
   team2_result: {type: Number},
+  player_result_name: {type: String}, // Use this to specify what "player_result" is used for e.g. Conn Smythe Trophy winner 
   player_result: [{type: Schema.Types.ObjectId, ref: 'Player'}],
   other_result: [{type: String}], 
-  points_available: {type: Number},
-  tournament: {type: Schema.Types.ObjectId, ref: 'Tournament', required: true},
-  testID: {type: Number, unique: true}
+  round: {type: Schema.Types.ObjectId, ref: 'Round'},
+  league: {type: Schema.Types.ObjectId, ref: 'League', required: true},
+  season: {type: Number},
+  testID: {type: Number}
 })
 
 // Virtual property for URL

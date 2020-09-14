@@ -6,7 +6,7 @@ block content
   ul
     li Number of Teams: #{team_list.length} 
     li Sport: #{league_detail.sport}
-
+    li Name of Tournament: #{league_detail.tournament_name}
   h1 List of Teams
 
   table
@@ -22,5 +22,9 @@ block content
             a(href=team.url) #{team.city} #{team.teamName}
           td Some number between 0 and 999
 
+  section(class='foot')
+    a(class='btn btn-primary' href= update_url) Edit League
+    if team_list.length == 0
+      a(class='btn btn-primary' href= delete_url) Delete League
 
 

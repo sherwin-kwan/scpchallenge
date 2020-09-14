@@ -200,7 +200,7 @@ exports.team_update_get = function (req, res, next) {
       err.status = 404;
       return next(err);
     } else { // Team actually exists
-      res.render('team_submit.pug', { title: 'Update Team', team: results.team_details, leagues_object: results.leagues_object });
+      res.render('team_submit.pug', { title: 'Edit Team', team: results.team_details, leagues_object: results.leagues_object });
     }
   })
 };
@@ -238,7 +238,7 @@ exports.team_update_post = [
           if (err) {
             return next(err);
           } else {
-            res.render('team_submit', { title: 'Add New Team', team: edited_team, errors: errors.array(), leagues_object: results });
+            res.render('team_submit', { title: 'Edit Team', team: edited_team, errors: errors.array(), leagues_object: results });
           }
         })
       // Note: errors.array() is needed to access the errors themselves

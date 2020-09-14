@@ -5,6 +5,7 @@ let LeagueSchema = new Schema( {
   league: {type: String, required: true, unique: true},
   league_short: {type: String, maxLength: 10},
   sport: {type: String, required: true},
+  tournament_name: {type: String},
   testID: {type: Number}
 });
 

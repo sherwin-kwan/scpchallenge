@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  form(method='POST' action='')
+    span See all events for: 
+    select(name='chooseleague')
+      for league of all_leagues
+        option(value= league._id) #{league.league_short}
+    button.btn.btn-primary(type="submit") Go!
+  table
+      thead
+        tr
+          th Away
+          th Result
+          th Home
+          th Round
+          th Next Game
+          th Next Start Time
+      tbody
+      if events_in_league.length > 0
+        - events_in_league.sort(function(a, b) {let textA = a.begins_at.toUpperCase(); let textB = b.begins_at.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for event of events_in_league
+          tr 
+            td 
+            td
+            td
+            td
+            td
+            td
+      else
+        li No events found!

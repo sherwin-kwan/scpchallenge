@@ -12,28 +12,26 @@ const user_controller = require('../controllers/userController');
 /// EVENT ROUTES ///
 
 // GET request for creating an Event. NOTE This must come before routes that display Event (uses id).
-router.get('/event/create', event_controller.event_create_get);
-
+router.get('/event/:lid/create', event_controller.event_create_get);
 // POST request for creating Event.
-router.post('/event/create', event_controller.event_create_post);
-
+router.post('/event/:lid/create', event_controller.event_create_post);
 // GET request to delete Event.
 router.get('/event/:id/delete', event_controller.event_delete_get);
-
 // POST request to delete Event.
 router.post('/event/:id/delete', event_controller.event_delete_post);
-
 // GET request to update Event.
 router.get('/event/:id/update', event_controller.event_update_get);
-
 // POST request to update Event.
 router.post('/event/:id/update', event_controller.event_update_post);
-
 // GET request for one Event.
 router.get('/event/:id', event_controller.event_detail);
-
-// GET request for list of all Event items.
+// GET request for list of all Event items in a League
+router.get('/events/:lid', event_controller.events_in_league);
+// GET request for list of all Events
 router.get('/events', event_controller.event_list);
+// POST request to go from all Events page to Event page for a specific League
+router.post('/events', event_controller.filter_events_by_league);
+router.post('/events/:lid', event_controller.filter_events_by_league);
 
 /// LEAGUE ROUTES ///
 
