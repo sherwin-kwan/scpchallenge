@@ -11,7 +11,8 @@ block content
     
     label(for='tournament_name') Tournament Name
       input#tournament_name.form-create(type='text' name='tournament_name' value=(undefined===league ? '' : league.tournament_name))
-  
+    label(for='event_name') Events in the tournament are called:
+      input#event_name.form-create(type='text' name='event_name' value=(undefined===league ? '' : league.event_name))
     label(for='sport') Sport played
       input#sport.form-create(type='text' name='sport' value=(undefined===league ? '' : league.sport))
     

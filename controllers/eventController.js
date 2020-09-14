@@ -42,14 +42,14 @@ exports.events_in_league = function (req, res, next) {
     if (err) {
       return next(err);
     } else {
-      res.render('events_in_league.pug', {title: `List of ${results.this_league.tournament_name} Matchups`, events_in_league: results.events_in_league,
+      res.render('events_in_league.pug', {title: `List of ${results.this_league.tournament_name} ${results.this_league.event_name}`, events_in_league: results.events_in_league,
       all_leagues: results.all_leagues, this_league: results.this_league});
     }
   })
 };
 
 exports.filter_events_by_league = function (req, res, next) {
-  res.redirect(`${req.body.chooseleague}`)
+  res.redirect(`/data/events/${req.body.chooseleague}`)
 }
 
 // Display detail page for a specific Event.

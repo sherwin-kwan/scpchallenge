@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   form(method='POST' action='')
-    span See all events for: 
+    span See all games and series for: 
     select(name='chooseleague')
       for league of all_leagues
         option(value= league._id) #{league.league_short}
@@ -30,3 +30,5 @@ block content
             td
       else
         li No events found!
+  section.foot
+    a.btn.btn-primary(href=`event/${this_league._id}/create`) Create New #{this_league.event_name}

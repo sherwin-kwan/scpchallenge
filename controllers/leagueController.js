@@ -72,6 +72,8 @@ exports.league_create_post = [
   expVal.sanitizeBody('league_short').escape(),
   expVal.body('tournament_name').trim(),
   expVal.sanitizeBody('tournament_name').escape(),
+  expVal.body('event_name').trim(),
+  expVal.sanitizeBody('event_name').escape(),
   expVal.body('sport', 'Sport required').trim().isLength({ min: 1 }),
   expVal.sanitizeBody('sport').escape(),
   (req, res, next) => {
@@ -84,6 +86,7 @@ exports.league_create_post = [
         league: req.body.league_name,
         league_short: req.body.league_short,
         tournament_name: req.body.tournament_name,
+        event_name: req.body.event_name,
         sport: req.body.sport
       }
     );
@@ -167,6 +170,8 @@ exports.league_update_post = [
   expVal.sanitizeBody('league_short').escape(),
   expVal.body('tournament_name').trim(),
   expVal.sanitizeBody('tournament_name').escape(),
+  expVal.body('event_name').trim(),
+  expVal.sanitizeBody('event_name').escape(),
   expVal.body('sport', 'Sport is required').trim().isLength({ min: 1 }),
   expVal.sanitizeBody('sport').escape(),
   function (req, res, next) {
@@ -178,6 +183,7 @@ exports.league_update_post = [
         league: req.body.league_name,
         league_short: req.body.league_short,
         tournament_name: req.body.tournament_name,
+        event_name: req.body.event_name,
         sport: req.body.sport,
         _id: req.params.id // Note: Ensure the original ID is included in this new record (Mongo document) so there's no confusion
         // And we don't inadvertently create a duplicate
