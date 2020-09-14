@@ -1,0 +1,35 @@
+//- Possible URLs:
+//- 1) /data/event/:lid/create
+//- 2) /data/event/:id/update
+
+extends layout
+
+block content
+  h3 Submit new #{league.tournament_name} #{league.event_name}
+  form(action="" method='POST')
+    label(for='team1') Away Team
+      select#team1.form-create(name='team1')
+        for team of teams_in_league
+          option(value= team) #{team.teamName}
+    label(for='team2') Home Team
+      select#team2.form-create(name='team2')
+        for team of teams_in_league
+          option(value= team) #{team.teamName}
+    label(for='format') Format
+      select#format.form-create(name='format')
+        for format of format_list
+          option(value= format) #{format}
+    label(for='season') Season (Year)
+      input#season.form-create(type='text' name='season')
+    label(for='begins_at') Date of First Game
+      input#begins_at.form-create(type='date' name='begins_at')
+    label(for='round') Round
+      select#round.form-create(name='round')
+        for round of round_list
+          option(value= round._id) #{round.name}
+    button.btn.btn-primary(type='submit') Create #{league.event_name}
+  if errors
+    ul
+      for error in errors
+        li(class='error')= error.msg
+
