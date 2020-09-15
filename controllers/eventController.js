@@ -88,7 +88,7 @@ exports.event_create_get = function (req, res, next) {
 
 // Handle Event create on POST.
 exports.event_create_post = function (req, res) {
-  res.send('NOT IMPLEMENTED: Event create POST');
+  
 };
 
 // Display Event delete form on GET.
