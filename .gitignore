@@ -4,3 +4,6 @@ node-modules
 node-modules/**
 **/node-modules/
 *.log
+node-modules/
+async
+babel
