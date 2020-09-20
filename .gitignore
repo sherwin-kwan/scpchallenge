@@ -1,4 +1,6 @@
-*.log
+# Testing
+
 node-modules
-node-modules/*
-node-modules/
+node-modules/**
+**/node-modules/
+*.log
