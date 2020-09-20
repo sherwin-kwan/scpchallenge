@@ -1,9 +1,4 @@
 # Testing
 
-node-modules
-node-modules/**
-**/node-modules/
+node_modules/
 *.log
-node-modules/
-async
-babel
