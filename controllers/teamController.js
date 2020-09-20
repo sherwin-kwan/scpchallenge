@@ -110,7 +110,7 @@ exports.team_create_post = [
       // because express-validator returns an object containing the array of errors along with other information
       return;
     };
-    Team.findOne({ city: req.body.city, teamName: req.body.teamName, league: req.body.league }, (err, results) => {
+    Team.findOne({ teamName: req.body.teamName, league: req.body.league }, (err, results) => {
       if (err) {
         return next(err);
       } else if (results) { // Duplicate found

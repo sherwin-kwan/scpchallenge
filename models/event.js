@@ -11,7 +11,7 @@ let EventSchema = new Schema( {
   team1_result: {type: Number},
   team2_result: {type: Number},
   player_result_name: {type: String}, // Use this to specify what "player_result" is used for e.g. Conn Smythe Trophy winner 
-  player_result: [{type: Schema.Types.ObjectId, ref: 'Player'}],
+  player_result: {type: Schema.Types.ObjectId, ref: 'Player'},
   other_result: [{type: String}], 
   round: {type: Schema.Types.ObjectId, ref: 'Round', required: true},
   format: {type: String, required: true, enum: formats, default: 'BO7'},
